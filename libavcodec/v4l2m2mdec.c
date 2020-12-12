@@ -10,7 +10,7 @@
 
 #include "avcodec.h"
 #include "decode.h"
-#include "hwaccel.h"
+#include "hwconfig.h"
 
 #include "libavutil/hwcontext.h"
 #include "libavutil/hwcontext_drm.h"
