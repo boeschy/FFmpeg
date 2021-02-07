@@ -798,7 +798,7 @@ static const StreamType ISO_types[] = {
 #endif
     { 0x1b, AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_H264       },
     { 0x1c, AVMEDIA_TYPE_AUDIO, AV_CODEC_ID_AAC        },
-    { 0x20, AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_H264       },
+    { 0x20, AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_H264_MVC   },
     { 0x21, AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_JPEG2000   },
     { 0x24, AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_HEVC       },
     { 0x42, AVMEDIA_TYPE_VIDEO, AV_CODEC_ID_CAVS       },
@@ -2561,6 +2561,10 @@ static void eit_cb(MpegTSFilter *filter, const uint8_t *section, int section_len
     MpegTSContext *ts = filter->u.section_filter.opaque;
     const uint8_t *p, *p_end;
     SectionHeader h1, *h = &h1;
+
+    // Something in kodi breaks with seeking when EIT EPG data is included in the stream
+    // As we figure this out lets just skip any EIT data.
+    return;
 
     /*
      * Sometimes we receive EPG packets but SDT table do not have
