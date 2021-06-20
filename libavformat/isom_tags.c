@@ -335,12 +335,3 @@ const AVCodecTag ff_codec_movaudio_tags[] = {
     { AV_CODEC_ID_NONE, 0 },
 };
 
-const struct AVCodecTag *avformat_get_mov_video_tags(void)
-{
-    return ff_codec_movvideo_tags;
-}
-
-const struct AVCodecTag *avformat_get_mov_audio_tags(void)
-{
-    return ff_codec_movaudio_tags;
-}
